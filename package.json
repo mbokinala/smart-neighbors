@@ -9,6 +9,9 @@
     "start": "node server.js",
     "watch": "nodemon server.js"
   },
+  "engines": {
+    "node": "8.11.1"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
