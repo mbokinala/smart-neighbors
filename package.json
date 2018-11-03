@@ -5,16 +5,16 @@
   "repository": "https://github.com/mbokinala/smart-neighbors.git",
   "author": "Manav Bokinala <manav.bokinala@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "start": "node server.js",
-    "watch": "nodemon server.js"
-  },
   "engines": {
     "node": "8.11.1"
+  },
+  "scripts": {
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "mongoose": "^5.3.9",
     "morgan": "^1.9.1"
   }
