@@ -7,7 +7,8 @@ const app = express();
 
 const userRoutes = require('./api/routes/users');
 
-mongoose.connect(`mongodb://api:n3ighbor@ds151293.mlab.com:51293/smart-rides`, {
+mongoose.connect(`
+mongodb://api:1234abc@ds151293.mlab.com:51293/smart-rides`, {
 	useNewUrlParser: true
 });
 
