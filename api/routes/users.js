@@ -47,7 +47,7 @@ router.post('/login', (req, res) => {
             return;
         }
 
-        res.status(200).send({id: result._id});
+        res.status(200).send({status: "success", id: result._id});
         return;
     })
 });
