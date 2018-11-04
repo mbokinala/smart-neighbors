@@ -16,15 +16,15 @@ router.post('/', (req, res) => {
         address: req.body.address
     });
   
-    // user.save()
-    //     .then(result => {
-    //         console.log(result);
-    //         res.status(201).json(result);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).send('error');
-    //     });
+    user.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).send('error');
+        });
 });
 
 router.get('/', (req, res) => {
