@@ -43,10 +43,12 @@ router.post('/login', (req, res) => {
         }
 
         if(!result || !bcrypt.compareSync(req.body.password, result.password || 'trash')) {
-            res.status(401).json({message: 'invalid username/password'});
+            res.status(200).json({status: 'failure'});
+            console.log('Invalid credentials');
             return;
         }
 
+        console.log('Success');
         res.status(200).send({status: "success", id: result._id});
         return;
     })
