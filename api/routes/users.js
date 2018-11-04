@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 
 router.post('/', (req, res) => {
+    console.log('CREATING NEW USER!!!!!!!!!!!!!!!!!!');
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
