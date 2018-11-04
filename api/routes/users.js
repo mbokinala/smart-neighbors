@@ -43,8 +43,9 @@ router.post('/login', (req, res) => {
             res.status(500).json({message: 'error'});
             return;
         }
-
-        if(!result || !bcrypt.compareSync(req.body.password, result.password || 'trash')) {
+        
+        console.log('Checking password ' + req.body.password + ' against ' + result.password);
+        if(req.body.password != result.password) {
             res.status(200).json({status: 'failure'});
             console.log('Invalid credentials');
             return;
