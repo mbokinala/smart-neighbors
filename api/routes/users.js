@@ -32,4 +32,24 @@ router.get('/', (req, res) => {
     res.status(200).json({message: 'hello', blah:'blah'});
 });
 
+router.post('/login', (req, res) => {
+    console.log(req.body.password);
+
+    User.findOne({username: req.body.username}, (err, result) => {
+        if(err){
+            console.log('Error on find ' + err);
+            res.status(500).json({message: 'error'});
+            return;
+        }
+
+        if(!result || !bcrypt.compareSync(req.body.password, result.password || 'trash')) {
+            res.status(401).json({message: 'invalid username/password'});
+            return;
+        }
+
+        res.status(200).send({id: result._id});
+        return;
+    })
+});
+
 module.exports = router;
