@@ -45,11 +45,18 @@ router.post('/login', (req, res) => {
         }
         
         console.log('Checking password ' + req.body.password + ' against ' + result.password);z
-        if(req.body.password != result.password) {
+        if(!req.body.password) {
             res.status(200).json({status: 'failure'});
             console.log('Invalid credentials');
             return;
         }
+
+        if(req.body.password != result.password) {
+            res.status(200).json({status: 'failure'});
+            return;
+        }
+
+
 
         console.log('Success');
         res.status(200).send({status: "success", id: result._id});
