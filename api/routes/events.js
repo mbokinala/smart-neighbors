@@ -31,4 +31,17 @@ router.post('/:id', (req, res) => {
 		});
 });
 
+router.get('/by/:id', (req, res) => {
+	const id = req.params.id;
+
+	Event.find({_id: id}, (err, results) => {
+		if(err) {
+			res.status(500).send(err);
+			return;
+		}
+
+		res.status(200).json(results); 
+	});
+});
+
 module.exports = router;
