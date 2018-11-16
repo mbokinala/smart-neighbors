@@ -30,3 +30,5 @@ router.post('/:id', (req, res) => {
 			return;
 		});
 });
+
+module.exports = router;
