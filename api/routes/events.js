@@ -14,7 +14,7 @@ router.post('/:id', (req, res) => {
 		category: req.body.category,
 		place1: req.body.place1,
 		place2: req.body.place2,
-		eventName: req.body.name,
+		eventName: req.body.eventName,
 		date: req.body.date,
 		status: "Initiated",
 		notes: req.params.notes,
@@ -40,7 +40,7 @@ router.get('/by/:id', (req, res) => {
 			return;
 		}
 		
-		console.log("Results: " + results);
+		console.log("Results: " + JSON.stringify(results));
 		res.status(200).json(results); 
 	});
 });
