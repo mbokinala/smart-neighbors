@@ -17,7 +17,7 @@ router.post('/:id', (req, res) => {
 		eventName: req.body.eventName,
 		date: req.body.date,
 		status: "Initiated",
-		notes: req.params.notes,
+		notes: req.body.notes,
 		byName: req.body.byName
 	});
 
