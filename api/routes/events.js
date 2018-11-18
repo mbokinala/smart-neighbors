@@ -45,4 +45,18 @@ router.get('/by/:id', (req, res) => {
 	});
 });
 
+router.get('/byNeighbors/:id', (req, res) => {
+	const id = req.params.id;
+
+	Event.find({hostId: {$ne: id}}, (err, results) => {
+		if(err) {
+			res.status(500).send(err);
+			return;
+		}
+		
+		console.log("Results: " + JSON.stringify(results));
+		res.status(200).json(results); 
+	});
+});
+
 module.exports = router;
