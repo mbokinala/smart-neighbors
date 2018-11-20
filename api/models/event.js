@@ -13,6 +13,9 @@ const eventSchema = mongoose.Schema({
 	status: String,
 	notes: String,
 	byName: String,
+	yes: [String],
+	no: [String],
+	maybe: [String]
 });
 
 module.exports = mongoose.model('Event', eventSchema);
