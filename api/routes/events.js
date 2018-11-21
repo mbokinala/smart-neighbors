@@ -48,7 +48,7 @@ router.get('/by/:id', (req, res) => {
 	});
 });
 
-router.post('/:eventId/updateStatus', (req, res) => {
+router.post('/updateStatus/:eventId', (req, res) => {
 	const eventId = req.params.eventId;
 
 	Event.findById(eventId, (err, result) => {
