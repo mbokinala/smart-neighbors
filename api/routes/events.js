@@ -35,6 +35,7 @@ router.post('/:id', (req, res) => {
 });
 
 router.post('/updateStatus/:eventId', (req, res) => {
+	console.log("Trying to updates");
 	const eventId = req.params.eventId;
 
 	Event.findById(eventId, (err, result) => {
