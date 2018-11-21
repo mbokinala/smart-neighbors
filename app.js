@@ -42,8 +42,8 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
+app.use('/users', userRoutes);
 
 app.use((req, res, next) => {
 	const error = new Error('Not found');
