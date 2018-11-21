@@ -34,20 +34,6 @@ router.post('/:id', (req, res) => {
 		});
 });
 
-router.get('/by/:id', (req, res) => {
-	const id = req.params.id;
-
-	Event.find({hostId: id}, (err, results) => {
-		if(err) {
-			res.status(500).send(err);
-			return;
-		}
-		
-		console.log("Results: " + JSON.stringify(results));
-		res.status(200).json(results); 
-	});
-});
-
 router.post('/updateStatus/:eventId', (req, res) => {
 	const eventId = req.params.eventId;
 
@@ -77,6 +63,20 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			}).catch((error) => {
 				res.status(500).json(error);
 			});
+	});
+});
+
+router.get('/by/:id', (req, res) => {
+	const id = req.params.id;
+
+	Event.find({hostId: id}, (err, results) => {
+		if(err) {
+			res.status(500).send(err);
+			return;
+		}
+		
+		console.log("Results: " + JSON.stringify(results));
+		res.status(200).json(results); 
 	});
 });
 
