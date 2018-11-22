@@ -83,8 +83,8 @@ router.get('/by/:id', (req, res) => {
 
 function removeFromArray(id, array){
 	for(var i = array.length - 1; i--;){
-		if (list[i] === id){
-			list.splice(i, 1);
+		if (array[i] === id){
+			array.splice(i, 1);
 		}
 	}
 }
