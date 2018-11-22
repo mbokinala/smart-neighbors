@@ -45,9 +45,9 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			return;
 		}
 		
-		removeFromArray(req.body.id, result.yes);
-		removeFromArray(req.body.id, result.no);
-		removeFromArray(req.body.id, result.maybe);
+		result.yes = removeFromArray(req.body.id, result.yes);
+		result.no = removeFromArray(req.body.id, result.no);
+		result.maybe = removeFromArray(req.body.id, result.maybe);
 
 		switch(req.body.status) {
 			case('yes'): {
@@ -93,6 +93,8 @@ function removeFromArray(id, array){
 			array.splice(i, 1);
 		}
 	}
+
+	return array;
 }
 
 //Test
