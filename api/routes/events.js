@@ -40,6 +40,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 
 	Event.findById(eventId, (err, result) => {
 		if(err) {
+			console.log("error finding")
 			res.status(500).send(err);
 			return;
 		}
@@ -58,10 +59,14 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			}
 		}
 
+		console.log("About to save");
+
 		result.save()
 			.then((created) => {
+				console.log("saved");
 				res.status(200).json(created);
 			}).catch((error) => {
+				console.log("error in saving");
 				res.status(500).json(error);
 			});
 	});
