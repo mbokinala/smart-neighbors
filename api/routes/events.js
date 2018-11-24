@@ -38,9 +38,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 	console.log("Trying to updates");
 	const eventId = req.params.eventId;
 
-	const yes;
-	const no;
-	const maybe;
+	var yes, no, maybe;
 
 	Event.findById(eventId, (err, result) => {
 		if(err) {
