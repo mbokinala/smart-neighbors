@@ -38,6 +38,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 	console.log("Trying to updates");
 	const eventId = req.params.eventId;
 
+	const yes, no, maybe;
 	Event.findById(eventId, (err, result) => {
 		if(err) {
 			console.log("error finding")
@@ -45,31 +46,33 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			return;
 		}
 		
-		result.yes = removeFromArray(req.body.id, result.yes);
-		result.no = removeFromArray(req.body.id, result.no);
-		result.maybe = removeFromArray(req.body.id, result.maybe);
-
-		switch(req.body.status) {
-			case('yes'): {
-				result.yes.push(req.body.id);
-			} case('no'): {
-				result.no.push(req.body.id);
-			} case('maybe'): {
-				result.maybe.push(req.body.id);
-			}
-		}
-
-		console.log("About to save");
-
-		result.save()
-			.then((created) => {
-				console.log("saved");
-				res.status(200).json(created);
-			}).catch((error) => {
-				console.log("error in saving");
-				res.status(500).json(error);
-			});
+		yes = result.yes;
+		no = result.no;
+		maybe = result.maybe;
 	});
+
+	switch(req.body.status) {
+		case('yes'): {
+			yes.push(req.body.id);
+		} case('no'): {
+			no.push(req.body.id);
+		} case('maybe'): {
+			maybe.push(req.body.id);
+		}
+	}
+
+	Event.findByIdAndUpdate(req.params.id, {$set: {yes, no, maybe}}, (err, result) => {
+		if(err) {
+			console.log("error while updating");
+			res.status(500).send(err);
+			return;
+		}
+		
+		console.log("updated document: " + JSON.stringify(result));
+		res.status(200).json(result);
+	});
+
+	
 });
 
 router.get('/by/:id', (req, res) => {
