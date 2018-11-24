@@ -38,7 +38,10 @@ router.post('/updateStatus/:eventId', (req, res) => {
 	console.log("Trying to updates");
 	const eventId = req.params.eventId;
 
-	const yes, no, maybe;
+	const yes;
+	const no;
+	const maybe;
+
 	Event.findById(eventId, (err, result) => {
 		if(err) {
 			console.log("error finding")
@@ -46,9 +49,9 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			return;
 		}
 		
-		yes = result.yes;
-		no = result.no;
-		maybe = result.maybe;
+		yes = removeFromArray(req.body.id, result.yes);
+		no = removeFromArray(req.body.id, result.no);
+		maybe = removeFromArray(req.body.id, result.maybe);
 	});
 
 	switch(req.body.status) {
