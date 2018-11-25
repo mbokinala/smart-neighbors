@@ -64,7 +64,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 
 	console.log("finding by " + eventId);
 
-	Event.findOneAndUpdate({_id: eventId}, {yes: yes, no: no, maybe: maybe}, {}, (err, created) => {
+	Event.findOneAndUpdate({_id: eventId}, {yes: yes, no: no, maybe: maybe}, {new: true}, (err, created) => {
 		if(err) {
 			console.log("error while updating");
 			res.status(500).send(err);
