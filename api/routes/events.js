@@ -1,14 +1,14 @@
 'use strict';
 
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const Event = require('../models/event');
+var Event = require('../models/event');
 
 router.post('/:id', (req, res) => {
-	const event = new Event({
+	var event = new Event({
 		_id: new mongoose.Types.ObjectId,
 		hostId: req.params.id,
 		category: req.body.category,
@@ -36,7 +36,7 @@ router.post('/:id', (req, res) => {
 
 router.post('/updateStatus/:eventId', (req, res) => {
 	console.log("Trying to updates");
-	const eventId = req.params.eventId;
+	var eventId = req.params.eventId;
 
 	var yes, no, maybe;
 
@@ -65,8 +65,12 @@ router.post('/updateStatus/:eventId', (req, res) => {
 	}
 
 	console.log("finding by " + eventId);
+	
+	var updates = {yes: yes, no: no, maybe: maybe};
+	var options = {new: true};
+	var query = {_id: eventId};
 
-	Event.findOneAndUpdate({_id: eventId}, {yes: yes, no: no, maybe: maybe}, {new: true}, (err, created) => {
+	Event.findOneAndUpdate(query, updates, options, (err, created) => {
 		if(err) {
 			console.log("error while updating");
 			res.status(500).send(err);
@@ -81,7 +85,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 });
 
 router.get('/by/:id', (req, res) => {
-	const id = req.params.id;
+	var id = req.params.id;
 
 	Event.find({hostId: id}, (err, results) => {
 		if(err) {
@@ -95,14 +99,16 @@ router.get('/by/:id', (req, res) => {
 });
 
 function removeFromArray(id, array){
-	const index = array.indexOf(id);
+	var returnValue = [""];
 
-    if (index !== -1) {
-        array.splice(index, 1);
-    }
+	for(var i = 0; i < array.length(); i++) {
+		if(array[i] != id) {
+			returnValue.push(array[i]);
+		}
+	}
 
-	console.log("array value: " + array);
-	return array;
+	console.log("array value: " + JSON.stringify(returnValue));
+	return returnValue;
 }
 
 //Test
