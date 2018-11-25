@@ -19,9 +19,9 @@ router.post('/:id', (req, res) => {
 		status: "Initiated",
 		notes: req.body.notes,
 		byName: req.body.byName,
-		yes:[],
-		no: [],
-		maybe: []
+		yes:[" "],
+		no: [" "],
+		maybe: [" "]
 	});
 
 	event.save()
