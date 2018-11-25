@@ -46,10 +46,12 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			res.status(500).send(err);
 			return;
 		}
+
+		console.log(JSON.stringify(result));
 		
-		yes = removeFromArray(req.body.id, yes);
-		no = removeFromArray(req.body.id, no);
-		maybe = removeFromArray(req.body.id, maybe);
+		yes = removeFromArray(req.body.id, result.yes);
+		no = removeFromArray(req.body.id, result.no);
+		maybe = removeFromArray(req.body.id, result.maybe);
 	});
 
 	switch(req.body.status) {
