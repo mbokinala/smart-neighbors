@@ -101,6 +101,7 @@ function removeFromArray(id, array){
         array.splice(index, 1);
     }
 
+	console.log("array value: " + array);
 	return array;
 }
 
