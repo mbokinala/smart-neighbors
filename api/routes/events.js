@@ -40,52 +40,27 @@ router.post('/updateStatus/:eventId', (req, res) => {
 
 	var yes, no, maybe;
 
-	Event.findById(eventId, (err, result) => {
+	Event.findById(eventId, (err, doc) => {
 		if(err) {
 			console.log("error finding")
 			res.status(500).send(err);
 			return;
 		}
-
-		console.log(JSON.stringify(result));
 		
-		yes = removeFromArray(req.body.id, result.yes);
-		no = removeFromArray(req.body.id, result.no);
-		maybe = removeFromArray(req.body.id, result.maybe);
-	});
-
-	console.log("yes: ", yes);
-	console.log("no: ", no);
-	console.log("maybe: ", maybe);
-
-	switch(req.body.status) {
-		case('yes'): {
-			yes.push(req.body.id);
-		} case('no'): {
-			no.push(req.body.id);
-		} case('maybe'): {
-			maybe.push(req.body.id);
-		}
-	}
-
-	console.log("finding by " + eventId);
-	
-	var updates = {yes: yes, no: no, maybe: maybe};
-	var options = {new: true};
-	var query = {_id: eventId};
-
-	Event.findOneAndUpdate(query, updates, options, (err, created) => {
-		if(err) {
-			console.log("error while updating");
-			res.status(500).send(err);
-			return;
-		}
+		doc.yes = removeFromArray(req.body.id, doc.yes);
+		doc.no = removeFromArray(req.body.id, doc.no);
+		doc.maybe = removeFromArray(req.body.id, doc.maybe);
 		
-		console.log("updated document: " + JSON.stringify(created));
-		res.status(200).json(created);
+		switch(req.body.status) {
+			case('yes'): {
+				doc.yes.push(req.body.id);
+			} case('no'): {
+				doc.no.push(req.body.id);
+			} case('maybe'): {
+				doc.maybe.push(req.body.id);
+			}
+		}	
 	});
-
-	
 });
 
 router.get('/by/:id', (req, res) => {
