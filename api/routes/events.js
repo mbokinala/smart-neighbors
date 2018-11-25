@@ -54,6 +54,10 @@ router.post('/updateStatus/:eventId', (req, res) => {
 		maybe = removeFromArray(req.body.id, result.maybe);
 	});
 
+	console.log("yes: ", yes);
+	console.log("no: ", no);
+	console.log("maybe: ", maybe);
+
 	switch(req.body.status) {
 		case('yes'): {
 			yes.push(req.body.id);
