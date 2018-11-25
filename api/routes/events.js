@@ -101,7 +101,7 @@ router.get('/by/:id', (req, res) => {
 function removeFromArray(id, array){
 	var returnValue = [""];
 
-	for(var i = 0; i < array.length(); i++) {
+	for(var i = 0; i < array.length; i++) {
 		if(array[i] != id) {
 			returnValue.push(array[i]);
 		}
