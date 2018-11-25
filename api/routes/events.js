@@ -59,7 +59,15 @@ router.post('/updateStatus/:eventId', (req, res) => {
 			} case('maybe'): {
 				doc.maybe.push(req.body.id);
 			}
-		}	
+		}
+		
+		doc.save()
+			.then((result) => {
+				res.status(200).json(result);
+			})
+			.catch((err) => {
+				res.status(500).send(err);
+			});
 	});
 });
 
