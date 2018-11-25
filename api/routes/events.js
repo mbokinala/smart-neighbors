@@ -19,9 +19,9 @@ router.post('/:id', (req, res) => {
 		status: "Initiated",
 		notes: req.body.notes,
 		byName: req.body.byName,
-		yes:[" "],
-		no: [" "],
-		maybe: [" "]
+		yes:["x"],
+		no: ["x"],
+		maybe: ["x"]
 	});
 
 	event.save()
@@ -74,7 +74,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 		}
 		
 		console.log("updated document: " + JSON.stringify(created));
-		res.status(200).json(result);
+		res.status(200).json(created);
 	});
 
 	
@@ -95,14 +95,11 @@ router.get('/by/:id', (req, res) => {
 });
 
 function removeFromArray(id, array){
-	console.log("in removeFromArray");
-	for(var i = array.length - 1; i >= 0; i--){
-		console.log("i is ", i, " id is ", array[i]);
-		if (array[i] === id){
-			console.log("match");
-			array.splice(i, 1);
-		}
-	}
+	const index = array.indexOf(id);
+
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
 
 	return array;
 }
