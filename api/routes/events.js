@@ -62,14 +62,16 @@ router.post('/updateStatus/:eventId', (req, res) => {
 		}
 	}
 
-	Event.findOneAndUpdate({_id: req.params.id}, {yes: yes, no: no, maybe: maybe}, {}, (err, result) => {
+	console.log("finding by " + req.params.id);
+
+	Event.findOneAndUpdate({_id: req.params.id}, {yes: yes, no: no, maybe: maybe}, {}, (err, created) => {
 		if(err) {
 			console.log("error while updating");
 			res.status(500).send(err);
 			return;
 		}
 		
-		console.log("updated document: " + JSON.stringify(result));
+		console.log("updated document: " + JSON.stringify(created));
 		res.status(200).json(result);
 	});
 
