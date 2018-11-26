@@ -38,8 +38,6 @@ router.post('/updateStatus/:eventId', (req, res) => {
 	console.log("Trying to updates");
 	var eventId = req.params.eventId;
 
-	var yes, no, maybe;
-
 	Event.findById(eventId, (err, doc) => {
 		if(err) {
 			console.log("error finding")
@@ -69,6 +67,10 @@ router.post('/updateStatus/:eventId', (req, res) => {
 				res.status(500).send(err);
 			});
 	});
+});
+
+router.post('/updateStatus', (req, res) => {
+	res.status(200).send("hi");
 });
 
 router.get('/by/:id', (req, res) => {
