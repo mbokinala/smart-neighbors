@@ -51,6 +51,7 @@ router.post('/updateStatus/:eventId', (req, res) => {
 		
 		switch(req.body.status) {
 			case('yes'): {
+				console.log('pushing value ' + req.body.id + ' onto yes array');
 				doc.yes.push(req.body.id);
 			} case('no'): {
 				doc.no.push(req.body.id);
