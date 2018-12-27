@@ -11,7 +11,7 @@ const userRoutes = require('./api/routes/users');
 const eventRoutes = require('./api/routes/events');
 
 mongoose.connect(`
-mongodb://api:1234abc@ds151293.mlab.com:51293/smart-rides`, {
+mongodb://android:android1234@ds027744.mlab.com:27744/smart-neighbors`, {
 	useNewUrlParser: true,
 });
 
